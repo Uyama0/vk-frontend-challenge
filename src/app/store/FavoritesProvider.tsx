@@ -14,6 +14,7 @@ interface FavoriteProps {
 interface FavoritesContextProps {
   favorites: FavoriteProps[];
   toggleFavorite: (item: FavoriteProps) => void;
+  isFavorite: (item: string) => boolean;
 }
 
 const FavoritesContext = createContext<FavoritesContextProps | undefined>(
@@ -45,8 +46,13 @@ export const FavoritesProvider: React.FC<PropsWithChildren> = ({
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
+  const isFavorite = (id: string) =>
+    favorites.some((favorite) => favorite.id === id);
+
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
+    <FavoritesContext.Provider
+      value={{ favorites, toggleFavorite, isFavorite }}
+    >
       {children}
     </FavoritesContext.Provider>
   );

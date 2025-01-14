@@ -11,7 +11,7 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ url, id }) => {
-  const { toggleFavorite } = useFavorites();
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <div className={styles.card}>
@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({ url, id }) => {
         className={styles.button}
         onClick={() => toggleFavorite({ id, url })}
       >
-        <HeartIcon />
+        <HeartIcon filled={isFavorite(id)} />
       </Button>
     </div>
   );
