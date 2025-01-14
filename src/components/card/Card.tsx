@@ -3,9 +3,14 @@ import { HeartIcon } from '../heartIcon';
 
 import styles from './styles.module.css';
 
-export const Card: React.FC = () => {
+interface CardProps {
+  image: string;
+}
+
+export const Card: React.FC<CardProps> = ({ image }) => {
   return (
     <div className={styles.card}>
+      <img className={styles.image} src={image} alt="cat image" />
       <Button className={styles.button}>
         <HeartIcon />
       </Button>
