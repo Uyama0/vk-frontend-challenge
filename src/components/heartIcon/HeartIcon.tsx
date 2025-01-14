@@ -2,11 +2,16 @@ import { useState } from 'react';
 
 import styles from './styles.module.css';
 
-export const HeartIcon: React.FC = () => {
+type HeartIconProps = {
+  filled?: boolean;
+};
+
+export const HeartIcon: React.FC<HeartIconProps> = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+  
   return (
     <svg
       width="40"

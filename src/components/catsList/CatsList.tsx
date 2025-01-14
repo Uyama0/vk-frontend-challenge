@@ -26,7 +26,7 @@ export const CatsList: React.FC = () => {
   return (
     <div className={styles.list}>
       {data?.map((item) => {
-        return <Card key={item.id} image={item.url} />;
+        return <Card key={item.id} image={item.url} id={item.id} />;
       })}
     </div>
   );
