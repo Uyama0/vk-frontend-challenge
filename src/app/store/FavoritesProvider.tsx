@@ -6,9 +6,14 @@ import {
   PropsWithChildren,
 } from 'react';
 
+interface FavoriteProps {
+  id: string;
+  url: string;
+}
+
 interface FavoritesContextProps {
-  favorites: string[];
-  toggleFavorite: (item: string) => void;
+  favorites: FavoriteProps[];
+  toggleFavorite: (item: FavoriteProps) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextProps | undefined>(
@@ -18,7 +23,7 @@ const FavoritesContext = createContext<FavoritesContextProps | undefined>(
 export const FavoritesProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<FavoriteProps[]>([]);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(
@@ -27,15 +32,17 @@ export const FavoritesProvider: React.FC<PropsWithChildren> = ({
     setFavorites(storedFavorites);
   }, []);
 
-  console.log(favorites);
+  const toggleFavorite = (item: FavoriteProps) => {
+    const isAlreadyFavorite = favorites.some(
+      (favorite) => favorite.id === item.id
+    );
 
-  const toggleFavorite = (item: string) => {
-    const isAlreadyFavorite = favorites.includes(item);
     const updatedFavorites = isAlreadyFavorite
-      ? favorites.filter((favorite) => favorite !== item)
-      : [...favorites, item]; 
+      ? favorites.filter((favorite) => favorite.id !== item.id)
+      : [...favorites, item];
+
     setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   return (

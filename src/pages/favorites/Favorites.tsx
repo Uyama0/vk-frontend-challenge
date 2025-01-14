@@ -1,3 +1,9 @@
+import { FavoriteList } from '@/components/favoriteList';
+
 export const Favorites: React.FC = () => {
-  return <div>Favorites</div>;
+  return (
+    <div>
+      <FavoriteList />
+    </div>
+  );
 };
