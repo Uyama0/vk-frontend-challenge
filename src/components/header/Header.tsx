@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.link}>
-        <Button className={styles.button}>Все котик</Button>
+        <Button className={styles.button}>Все котики</Button>
       </Link>
       <Link to="/favorites" className={styles.link}>
         <Button className={styles.button}>Любимые котики</Button>
