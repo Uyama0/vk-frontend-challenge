@@ -1,0 +1,11 @@
+.button {
+  color: var(--color-white-primary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 12px 24px;
+}
+
+.button:hover {
+  background-color: var(--color-blue-hovered);
+}

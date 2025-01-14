@@ -14,10 +14,10 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Main />,
       },
-      // {
-      //   path: 'orders',
-      //   element: <Favorites />,
-      // },
+      {
+        path: 'favorites',
+        element: <Favorites />,
+      },
     ],
   },
 ]);
