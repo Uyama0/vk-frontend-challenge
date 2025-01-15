@@ -3,7 +3,6 @@ import { useInfiniteQuery } from 'react-query';
 import { catApiHost, catApiKey } from '@/utils/env';
 
 type CatsProps = {
-  breeds: any[];
   id: string;
   url: string;
   width: number;

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 export const useInfiniteScroll = (
   isFetching: boolean,
@@ -10,7 +10,7 @@ export const useInfiniteScroll = (
     isFetchingRef.current = isFetching;
   }, [isFetching]);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (
       document.documentElement.scrollHeight -
         (document.documentElement.scrollTop + window.innerHeight) <
@@ -20,7 +20,7 @@ export const useInfiniteScroll = (
         fetchNextPage();
       }
     }
-  };
+  }, [fetchNextPage]);
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
@@ -28,5 +28,5 @@ export const useInfiniteScroll = (
     return function () {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 };

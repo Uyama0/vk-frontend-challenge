@@ -5,19 +5,24 @@ import { Main } from '@/pages/main';
 import { Favorites } from '@/pages/favorites';
 import { ErrorState } from '@/components/errorState';
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      errorElement: <ErrorState />,
+      children: [
+        {
+          path: '/',
+          element: <Main />,
+        },
+        {
+          path: 'favorites',
+          element: <Favorites />,
+        },
+      ],
+    },
+  ],
   {
-    element: <Layout />,
-    errorElement: <ErrorState />,
-    children: [
-      {
-        path: '/',
-        element: <Main />,
-      },
-      {
-        path: 'favorites',
-        element: <Favorites />,
-      },
-    ],
-  },
-]);
+    basename: '/vk-frontend-challenge',
+  }
+);

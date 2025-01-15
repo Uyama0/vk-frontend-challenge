@@ -9,7 +9,7 @@ export const ErrorState: React.FC = () => {
   const location = useLocation();
 
   const handleGoHome = () => {
-    if (location.pathname !== '/') {
+    if (location.pathname !== '/vk-frontend-challenge/') {
       navigate('/');
     } else {
       window.location.reload();
