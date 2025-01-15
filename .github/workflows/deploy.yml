@@ -26,6 +26,7 @@ jobs:
         env:
           VITE_CAT_API: ${{ secrets.VITE_CAT_API }}
           VITE_CAT_API_KEY: ${{ secrets.VITE_CAT_API_KEY }}
+        run: echo "Environment variables are set"
 
       - name: Build project
         run: npm run build
