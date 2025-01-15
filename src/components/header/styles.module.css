@@ -1,6 +1,6 @@
 .header {
   background-color: rgb(33, 150, 243);
-  height: 64px;
+  min-height: 64px;
   display: flex;
   padding: 0 63px;
   align-items: center;

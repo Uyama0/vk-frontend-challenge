@@ -1,5 +1,6 @@
 .button {
   color: var(--color-white-primary);
+  background-color: var(--color-blue-primary);
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
