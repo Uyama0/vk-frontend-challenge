@@ -16,9 +16,16 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+
+      - name: Set up environment variables
+        env:
+          VITE_CAT_API: ${{ secrets.VITE_CAT_API }}
+          VITE_CAT_API_KEY: ${{ secrets.VITE_CAT_API_KEY }}
 
       - name: Build project
         run: npm run build
