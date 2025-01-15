@@ -16,7 +16,7 @@ type FetcherResponseProps = {
 
 const fetcher = async (pageNumber: number = 0) => {
   const response = await fetch(
-    `${catApiHost}/v1/images/search?limit=15&size=med&mime_types=jpg&format=json&has_breeds=false&include_categories=false&page=${pageNumber}`,
+    `${catApiHost}/v1/images/search?limit=25&size=med&mime_types=jpg&format=json&has_breeds=false&include_categories=false&page=${pageNumber}`,
     {
       method: 'GET',
       headers: {
