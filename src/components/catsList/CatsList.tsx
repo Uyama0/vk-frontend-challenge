@@ -1,33 +1,26 @@
-import { useQuery } from 'react-query';
-
 import { Card } from '../card';
-import { fetchCats } from '@/api';
+import { useCatsQuery } from '@/api';
+import { LoadErrorWrapper } from '../loadErrorWrapper';
+import { useInfiniteScroll } from '@/hooks';
 
 import styles from './styles.module.css';
 
-type CatsProps = {
-  breeds: any[];
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-};
-
 export const CatsList: React.FC = () => {
-  const { data, error, isLoading } = useQuery<CatsProps[]>('cats', fetchCats);
+  const { isError, data, isLoading, fetchNextPage, isFetching } =
+    useCatsQuery();
 
-  if (error) {
-    return;
-  }
-  if (isLoading) {
-    return;
-  }
+  useInfiniteScroll(isFetching, fetchNextPage);
+
+  const catsData = data?.pages.flatMap((page) => page.data);
 
   return (
-    <div className={styles.list}>
-      {data?.map((item) => {
-        return <Card key={item.id} url={item.url} id={item.id} />;
-      })}
-    </div>
+    <LoadErrorWrapper isLoading={isLoading} isError={isError}>
+      <div className={styles.list}>
+        {catsData?.map((item) => {
+          return <Card key={item.id} url={item.url} id={item.id} />;
+        })}
+      </div>
+      {isFetching && <p>... загружаем еще котиков ...</p>}
+    </LoadErrorWrapper>
   );
 };

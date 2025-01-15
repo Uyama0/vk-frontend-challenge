@@ -1,1 +1,1 @@
-export { fetchCats } from './fetchCats';
+export { useCatsQuery } from './useCatsQuery';
