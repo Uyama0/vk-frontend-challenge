@@ -1,9 +1,15 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, PropsWithChildren, useCallback } from 'react';
 
-export const useInfiniteScroll = (
-  isFetching: boolean,
-  fetchNextPage: () => void
-) => {
+interface InfiniteScrollProps extends PropsWithChildren {
+  isFetching: boolean;
+  fetchNextPage: () => void;
+}
+
+export const InfiniteScroll = ({
+  isFetching,
+  fetchNextPage,
+  children,
+}: InfiniteScrollProps) => {
   const isFetchingRef = useRef(isFetching);
 
   useEffect(() => {
@@ -25,8 +31,10 @@ export const useInfiniteScroll = (
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
 
-    return function () {
+    return () => {
       document.removeEventListener('scroll', handleScroll);
     };
   }, [handleScroll]);
+
+  return <>{children}</>;
 };

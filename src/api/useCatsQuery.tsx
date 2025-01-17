@@ -41,10 +41,14 @@ export const useCatsQuery = () => {
     isFetching,
     hasNextPage,
     fetchNextPage,
-  } = useInfiniteQuery<FetcherResponseProps>(['cats'], () => fetcher(), {
-    getNextPageParam: ({ nextPage }) => nextPage,
-    staleTime: Infinity,
-  });
+  } = useInfiniteQuery<FetcherResponseProps>(
+    ['cats'],
+    ({ pageParam = 0 }) => fetcher(pageParam),
+    {
+      getNextPageParam: ({ nextPage }) => nextPage,
+      staleTime: Infinity,
+    }
+  );
 
   return {
     data,
