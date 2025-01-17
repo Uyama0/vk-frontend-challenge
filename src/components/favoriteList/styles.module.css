@@ -1,16 +1,7 @@
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 48px;
   justify-content: center;
   margin-top: 48px;
-}
-
-@media (max-width: 480px) and (orientation: portrait) {
-  .list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
 }
