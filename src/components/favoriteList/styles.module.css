@@ -5,3 +5,12 @@
   justify-content: center;
   margin-top: 48px;
 }
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+}
